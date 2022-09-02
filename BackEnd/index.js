@@ -5,9 +5,11 @@ const app = express();
 
 dotenv.config();
 
+app.use(express.json());
+
 //MONGO_DB CONNECTION
 mongoose
-  .connect(process.env.MONGO)
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Mongo db connected");
   })
