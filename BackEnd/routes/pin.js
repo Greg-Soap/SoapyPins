@@ -3,7 +3,7 @@ const Pin = require("../models/Pins");
 
 //CREATE A PIN
 router.post("/", async (req, res) => {
-  const newPin = new Pin(res.body);
+  const newPin = new Pin(req.body);
   try {
     const savedPin = await newPin.save();
     res.status(200).json(savedPin);
@@ -12,4 +12,14 @@ router.post("/", async (req, res) => {
   }
 });
 
-//GETTING A PIN
+//GETTING ALL PIN
+router.get("/", async (req, res) => {
+  try {
+    const pins = Pin.find();
+    res.status(200).json(pins);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+module.exports = router;
